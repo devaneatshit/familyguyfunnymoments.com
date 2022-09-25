@@ -4,8 +4,8 @@ html {
 
 .scroll-container,
 .scroll-area {
-  max-width: 1080px;
-  height: 1280px;
+  max-width: 850px;
+  height:800px;
   font-size: 60px;
 }
 
