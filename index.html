@@ -26,9 +26,19 @@
 <!-- partial -->
   <script  src="./script.js"></script>
   <script type="javascript/text">
-var myvid = $('#clip')[0];
+var clipno1 = $('#clip1')[0];
 $(window).scroll(function(){
   var scroll = $(this).scrollTop();
+  scroll > 70 ? clipno1.pause() : clipno1.play()
+})
+
+var clipno2 = $('#clip2')[0];
+$(window).scroll(function(){
+  scroll > 70 ? clipno2.pause() : clipno2.play()
+})
+
+var clipno3 = $('#clip3')[0];
+$(window).scroll(function(){
   scroll > 70 ? myvid.pause() : myvid.play()
 })
 </script>
