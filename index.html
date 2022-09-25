@@ -13,9 +13,9 @@
 <div class="support-scrollsnap"></div>
 
 <div class="scroll-container">
-	<div class="scroll-area"><video id="clip1" src="videos/1.mp4" autoplay controls /></div>
-	<div class="scroll-area"><video id="clip2" src="videos/2.mp4" autoplay controls /></div>
-	<div class="scroll-area"><video id="clip3" src="videos/3.mp4" autoplay controls /></div>
+	<div class="scroll-area"><video src="videos/1.mp4" autoplay controls /></div>
+	<div class="scroll-area"><video src="videos/2.mp4" autoplay controls /></div>
+	<div class="scroll-area"><video src="videos/3.mp4" autoplay controls /></div>
 	<div class="scroll-area">4</div>
 	<div class="scroll-area">5</div>
 	<div class="scroll-area">6</div>
@@ -26,21 +26,19 @@
 <!-- partial -->
   <script  src="./script.js"></script>
   <script type="javascript/text">
-var clipno1 = $('#clip1')[0];
-$(window).scroll(function(){
-  var scroll = $(this).scrollTop();
-  scroll > 70 ? clipno1.pause() : clipno1.play()
-})
-
-var clipno2 = $('#clip2')[0];
-$(window).scroll(function(){
-  scroll > 70 ? clipno2.pause() : clipno2.play()
-})
-
-var clipno3 = $('#clip3')[0];
-$(window).scroll(function(){
-  scroll > 70 ? myvid.pause() : myvid.play()
-})
+const video = document.querySelectorAll("video");
+for (let i = 0; i < video.length; i++) {
+   const observer = new IntersectionObserver((entries) => {
+       entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+              video.pause();
+          } else {
+              video.play();
+          }
+       });
+   }, {});
+  observer.observe(video);
+}
 </script>
 
 </body>
