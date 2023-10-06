@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0; /* Add this line to remove body margin */
+        }
+
+        .music-player {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .gif {
+            width: 100%;
+            max-width: 300px; /* Adjust the size as needed */
+            display: none; /* Initially hide the GIF */
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-player">
+        <h1>Music Player</h1>
+        <!-- Add an empty div to display the "Now Playing" information -->
+        <div id="now-playing"></div>
+        <audio id="audio" controls>
+            <source id="audio-source" src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+            <button id="prev">Previous</button>
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <button id="next">Next</button>
+        </div>
+        <img id="gif" class="gif" src="https://devanwashere.github.io/familyguyfunnymoments.com/gif.gif" alt="Animated GIF">
+    </div>
+
+    <script>
+        const audio = document.getElementById("audio");
+        const playButton = document.getElementById("play");
+        const pauseButton = document.getElementById("pause");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        const gif = document.getElementById("gif");
+        const audioSource = document.getElementById("audio-source");
+        const nowPlayingElement = document.getElementById("now-playing");
+
+        let currentTrack = 1;
+
+        // Define your song list
+        const songList = [
+            "1: 8am in Charlotte - Drake",
+            "2: Flaming Hot Cheetos - Clairo",
+            "3: The Spins - Mac Miller",
+            "4: a lot - 21 Savage",
+            "5: Self Control - Frank Ocean",
+            "6: Nights - Frank Ocean",
+            "7: Surround Sound - JID",
+            "8: What's the Use? - Mac Miller",
+            "9: Waves - Joey Bada$$",
+            "10: i was all over her - salvia path",
+            "11: XXX. - Kendrick Lamar",
+            "12: Circles - Mac Miller",
+            "13: Pyramids - Frank Ocean",
+            "14: Manifesto - Liam McCay",
+            "15: Real - Kendrick Lamar",
+            "16: I. The Worst Guys - Childish Gambino",
+            "17: 2009 - Mac Miller",
+            "18: IFHY - Tyler, The Creator",
+            "19: She - Tyler, The Creator",
+            "20: I Love Life, Thank You - Mac Miller"
+        ];
+
+        function loadTrack() {
+            audioSource.src = `https://devanwashere.github.io/familyguyfunnymoments.com/audio/${currentTrack}.mp3`;
+            audio.load();
+        }
+
+        loadTrack();
+
+        playButton.addEventListener("click", () => {
+            audio.play();
+            gif.style.display = "block"; // Show the GIF when playing
+        });
+
+        pauseButton.addEventListener("click", () => {
+            audio.pause();
+            gif.style.display = "none"; // Hide the GIF when paused
+        });
+
+        prevButton.addEventListener("click", () => {
+            if (currentTrack > 1) {
+                currentTrack--;
+                loadTrack();
+                audio.play();
+                updateNowPlaying();
+            }
+        });
+
+        nextButton.addEventListener("click", () => {
+            if (currentTrack < songList.length) {
+                currentTrack++;
+                loadTrack();
+                audio.play();
+                updateNowPlaying();
+            }
+        });
+
+        // Update the Now Playing information
+        function updateNowPlaying() {
+            nowPlayingElement.textContent = songList[currentTrack - 1];
+        }
+
+        // Initialize the Now Playing information
+        updateNowPlaying();
+    </script>
+</body>
+</html>
